@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { useSnackbar } from "popcrumb";
 
 export default function WaitlistForm() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("idle");
   const [error, setError] = useState("");
+  const { snackbar } = useSnackbar();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,10 +33,12 @@ export default function WaitlistForm() {
       }
 
       setStatus("success");
+      snackbar.success("Welcome aboard! Your boarding pass is secured. ✈️");
       setEmail("");
     } catch (err) {
       setStatus("error");
       setError(err.message);
+      snackbar.error(err.message);
     }
   };
 

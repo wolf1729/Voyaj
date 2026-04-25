@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { SnackbarProvider, SnackbarContainer, SnackbarManager } from "popcrumb";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -63,8 +64,12 @@ export default function RootLayout({ children }) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
     >
       <body className="min-h-full flex flex-col">
-        {children}
-        <Analytics />
+        <SnackbarProvider>
+          <SnackbarManager />
+          <SnackbarContainer />
+          {children}
+          <Analytics />
+        </SnackbarProvider>
       </body>
     </html>
   );
