@@ -13,8 +13,7 @@ export default function Destinations() {
             <Image 
               src="/images/destination_paris_1777105587504.png" 
               alt="Paris" 
-              width={600}
-              height={400}
+              fill
               className="object-cover"
             />
             <div className="destination-info">
@@ -25,8 +24,7 @@ export default function Destinations() {
             <Image 
               src="/images/destination_japan_1777105670394.png" 
               alt="Kyoto" 
-              width={600}
-              height={400}
+              fill
               className="object-cover"
             />
             <div className="destination-info">
@@ -37,8 +35,7 @@ export default function Destinations() {
             <Image 
               src="/images/destination_bali_1777105828082.png" 
               alt="Bali" 
-              width={600}
-              height={400}
+              fill
               className="object-cover"
             />
             <div className="destination-info">

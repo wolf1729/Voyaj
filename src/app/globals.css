@@ -333,45 +333,43 @@ h1, h2, h3 {
   margin-bottom: 4rem;
 }
 
-.section-title {
+.section-header h2 {
   font-size: clamp(2.5rem, 4vw, 4rem);
   font-weight: 400;
   margin: 0;
 }
 
-.section-desc {
+.section-header p {
   color: #a1a1aa;
   max-width: 400px;
   font-size: 1.125rem;
   line-height: 1.6;
 }
 
-.dest-grid {
+.destination-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 2rem;
 }
 
-.dest-card {
+.destination-card {
   position: relative;
   height: 500px;
   border-radius: 24px;
   overflow: hidden;
   cursor: pointer;
+  background: #111;
 }
 
-.dest-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.destination-card img {
   transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.dest-card:hover img {
+.destination-card:hover img {
   transform: scale(1.05);
 }
 
-.dest-overlay {
+.destination-info {
   position: absolute;
   inset: 0;
   background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
@@ -379,27 +377,20 @@ h1, h2, h3 {
   flex-direction: column;
   justify-content: flex-end;
   padding: 2.5rem;
+  z-index: 2;
 }
 
-.dest-name {
-  font-size: 2.5rem;
+.destination-info h3 {
+  font-size: 2rem;
   font-family: var(--font-serif);
   font-weight: 400;
   margin: 0;
+  color: white;
   transform: translateY(10px);
   transition: transform 0.4s ease;
 }
 
-.dest-country {
-  color: var(--primary);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 0.875rem;
-  margin-bottom: 0.5rem;
-}
-
-.dest-card:hover .dest-name {
+.destination-card:hover h3 {
   transform: translateY(0);
 }
 
