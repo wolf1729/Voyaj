@@ -58,10 +58,12 @@ export default function WaitlistForm() {
         />
         <button 
           type="submit" 
-          className="btn-primary"
+          className={`btn-primary ${status === "success" ? "btn-success" : ""}`}
           disabled={status === "loading" || status === "success"}
         >
-          {status === "loading" ? "Processing..." : status === "success" ? "Boarding Pass Secured! ✈️" : "Get Early Access"}
+          <span>
+            {status === "loading" ? "Processing..." : status === "success" ? "Boarding Pass Secured! ✈️" : "Get Early Access"}
+          </span>
         </button>
       </form>
       {status === "success" && (

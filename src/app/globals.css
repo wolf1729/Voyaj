@@ -5,8 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --primary: oklch(0.205 0 0); /* Vibrant orange for travel */
-  --primary-hover: #ea580c;
+  --brand-orange: #f26422;
+  --brand-orange-hover: #ff7a3d;
   --glass-bg: rgba(20, 20, 20, 0.4);
   --glass-border: rgba(255, 255, 255, 0.1);
   --font-sans: var(--font-geist-sans), "Inter", Arial, sans-serif;
@@ -129,7 +129,7 @@ h1, h2, h3 {
   animation: fadeInDown 0.8s ease-out;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: var(--primary);
+  color: var(--brand-orange);
 }
 
 .hero-title {
@@ -195,31 +195,111 @@ h1, h2, h3 {
 }
 
 .input-field:focus {
-  border-color: var(--primary);
+  border-color: var(--brand-orange);
   background: rgba(0, 0, 0, 0.6);
   box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.15);
 }
 
 .btn-primary {
+  --border-width: 2px;
+  --radius: 16px;
+  position: relative;
   width: 100%;
   padding: 1.25rem;
-  border-radius: 16px;
-  background: var(--primary);
+  border-radius: var(--radius);
+  background: #000;
   color: white;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.125rem;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  overflow: hidden;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    transparent 70%,
+    #fff 100%
+  );
+  animation: rotate-border 3s linear infinite;
+  transform-origin: center;
+  transform: translate(-50%, -50%);
+}
+
+.btn-primary::after {
+  content: "";
+  position: absolute;
+  inset: var(--border-width);
+  background: var(--brand-orange);
+  border-radius: calc(var(--radius) - var(--border-width));
+  z-index: 1;
+  transition: background 0.3s ease;
+}
+
+.btn-primary span {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+@keyframes rotate-border {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 .btn-primary:hover {
-  background: var(--primary-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px -5px rgba(249, 115, 22, 0.4);
+  transform: scale(1.02);
+  filter: brightness(1.1);
 }
+
+.btn-primary:hover::after {
+  background: var(--brand-orange-hover);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-primary:disabled {
+  cursor: not-allowed;
+  filter: saturate(0.5) brightness(0.8);
+}
+
+.btn-primary:disabled::before {
+  animation-play-state: paused;
+  opacity: 0.3;
+}
+
+/* Success State */
+.btn-primary.btn-success {
+  background: #059669; /* Emerald Green */
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: none;
+  cursor: default;
+}
+
+.btn-primary.btn-success::before {
+  display: none;
+}
+
+.btn-primary.btn-success::after {
+  background: #059669;
+}
+
 
 /* Destinations Section */
 .destinations {
