@@ -5,16 +5,37 @@ import { useState } from "react";
 export default function WaitlistForm() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("idle");
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email) return;
     
     setStatus("loading");
-    setTimeout(() => {
+    setError("");
+
+    try {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+      const response = await fetch(`${apiUrl}/api/waitlist`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Something went wrong');
+      }
+
       setStatus("success");
       setEmail("");
-    }, 1500);
+    } catch (err) {
+      setStatus("error");
+      setError(err.message);
+    }
   };
 
   return (
@@ -42,6 +63,11 @@ export default function WaitlistForm() {
       {status === "success" && (
         <p style={{ color: "#a7f3d0", marginTop: "1rem", fontSize: "0.875rem", textAlign: "center" }}>
           You are on the list! Keep an eye on your inbox.
+        </p>
+      )}
+      {status === "error" && (
+        <p style={{ color: "#f87171", marginTop: "1rem", fontSize: "0.875rem", textAlign: "center" }}>
+          {error}
         </p>
       )}
     </div>
