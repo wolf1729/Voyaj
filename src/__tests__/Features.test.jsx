@@ -1,7 +1,7 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, fireEvent, act } from '@testing-library/react'
 import Features from '@/components/sections/Features'
 
-// Mock the Map as a named export to match Features.jsx
+// Mock the Map as a named export
 jest.mock('@/components/ui/map', () => ({
   Map: function MockMap() {
     return <div data-testid="mock-map-explorer">Mock Map Explorer</div>
@@ -9,22 +9,51 @@ jest.mock('@/components/ui/map', () => ({
 }))
 
 describe('Features Component', () => {
-  it('renders the section header correctly', () => {
+  beforeEach(() => {
+    jest.useFakeTimers()
+  })
+
+  afterEach(() => {
+    jest.useRealTimers()
+  })
+
+  it('renders correctly', () => {
     render(<Features />)
     expect(screen.getByText(/Reimagining Travel/i)).toBeInTheDocument()
-    expect(screen.getByText(/A suite of intelligent features/i)).toBeInTheDocument()
   })
 
-  it('renders bento grid feature cards', () => {
+  it('auto-cycles through features', () => {
     render(<Features />)
-    // Using getAllByText because titles appear twice (vertical title and main title)
-    expect(screen.getAllByText(/Global Discovery/i).length).toBeGreaterThan(0)
-    expect(screen.getAllByText(/Smart Itineraries/i).length).toBeGreaterThan(0)
-    expect(screen.getAllByText(/Reel to Reality/i).length).toBeGreaterThan(0)
+    
+    // Initially first feature is active
+    const panels = screen.getAllByRole('heading', { level: 3 }).map(h => h.closest('.panel'))
+    expect(panels[0]).toHaveClass('panelActive')
+    
+    // Advance time by 5 seconds
+    act(() => {
+      jest.advanceTimersByTime(5000)
+    })
+    
+    expect(panels[1]).toHaveClass('panelActive')
   })
 
-  it('contains the interactive map element', () => {
+  it('allows manual feature selection', () => {
     render(<Features />)
-    expect(screen.getByTestId('mock-map-explorer')).toBeInTheDocument()
+    const panels = screen.getAllByRole('heading', { level: 3 }).map(h => h.closest('.panel'))
+    
+    fireEvent.click(panels[2])
+    expect(panels[2]).toHaveClass('panelActive')
+  })
+
+  it('cycles back to the first feature after the last one', () => {
+    render(<Features />)
+    const panels = screen.getAllByRole('heading', { level: 3 }).map(h => h.closest('.panel'))
+    
+    // Advance through all 4 features (5s each)
+    act(() => {
+      jest.advanceTimersByTime(5000 * 4)
+    })
+    
+    expect(panels[0]).toHaveClass('panelActive')
   })
 })

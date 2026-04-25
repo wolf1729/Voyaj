@@ -18,8 +18,6 @@ const config = {
     'src/**/*.{js,jsx}',
     '!src/**/*.test.{js,jsx}',
     '!src/**/__tests__/**',
-    '!src/app/layout.js',
-    '!src/app/page.js',
   ],
 }
 

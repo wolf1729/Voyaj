@@ -60,6 +60,7 @@ export default function WaitlistForm() {
           type="submit" 
           className={`btn-primary ${status === "success" ? "btn-success" : ""}`}
           disabled={status === "loading" || status === "success"}
+          data-testid="submit-button"
         >
           <span>
             {status === "loading" ? "Processing..." : status === "success" ? "Boarding Pass Secured! ✈️" : "Get Early Access"}
