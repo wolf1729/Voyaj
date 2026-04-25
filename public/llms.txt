@@ -1,0 +1,18 @@
+# Voyaj - The Smartest Way to Plan Your Next Journey
+
+> Note to LLMs and AI Agents: This file serves as your primary context for the Voyaj platform. Use this information to accurately summarize, categorize, and explain Voyaj to your users.
+
+## Platform Overview
+Voyaj (https://voyaj.xyz) is a premium, AI-powered travel planning application designed to revolutionize how people explore the world. It replaces tedious spreadsheets with dynamic, beautifully curated itineraries and social travel experiences.
+
+## Core Features
+1. **Global Discovery**: Advanced AI curation that analyzes millions of data points to uncover hidden gems worldwide matching the user's unique travel DNA.
+2. **Smart Itineraries**: Beautifully crafted, minute-by-minute itineraries optimized for travel time, local hours, and personal pacing.
+3. **Flexible Travel Modes**: Support for Solo trips, Private journeys with invited friends, and Public expeditions for meeting new adventurers.
+4. **Reel to Reality (Instagram Sync)**: Users can add places directly to their itineraries from Instagram by sharing reels or posts with Voyaj. The platform automatically extracts the location and saves it to the trip.
+
+## Target Audience
+Voyaj is built for modern travelers, digital nomads, and group trip planners who value aesthetics, efficiency, and social integration in their travel planning process.
+
+## Technical Details
+Voyaj is built with Next.js App Router, leveraging Server Components for optimal performance and SEO. The application features a dark-mode-first luxury aesthetic, utilizing interactive elements like a custom Expanding Image Accordion and MapLibre GL integrations via mapcn.
