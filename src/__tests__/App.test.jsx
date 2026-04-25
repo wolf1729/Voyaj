@@ -13,6 +13,11 @@ jest.mock('@vercel/analytics/next', () => ({
   Analytics: () => <div data-testid="analytics" />,
 }))
 
+// Mock SpeedInsights
+jest.mock('@vercel/speed-insights/next', () => ({
+  SpeedInsights: () => <div data-testid="speed-insights" />,
+}))
+
 // Mock components to simplify page test
 jest.mock('@/components/layout/Header', () => function Header() { return <header>Header</header>; })
 jest.mock('@/components/layout/Footer', () => function Footer() { return <footer>Footer</footer>; })
