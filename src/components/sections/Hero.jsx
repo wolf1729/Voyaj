@@ -1,9 +1,18 @@
+import Image from "next/image";
 import WaitlistForm from "../ui/WaitlistForm";
 
 export default function Hero() {
   return (
     <>
-      <img src="/images/hero_travel_bg_1777105564032.png" alt="Travel Landscape" className="hero-bg" />
+      <div className="hero-bg-wrapper">
+        <Image 
+          src="/images/hero_travel_bg_1777105564032.png" 
+          alt="Travel Landscape" 
+          fill
+          priority
+          className="hero-bg object-cover" 
+        />
+      </div>
       <div className="hero-overlay"></div>
       <section className="hero">
         <div className="badge">

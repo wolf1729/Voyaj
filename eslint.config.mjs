@@ -3,7 +3,14 @@ import nextVitals from "eslint-config-next/core-web-vitals";
 
 const eslintConfig = defineConfig([
   ...nextVitals,
-  // Override default ignores of eslint-config-next.
+  {
+    rules: {
+      "no-unused-vars": "error",
+      "no-console": ["warn", { allow: ["warn", "error"] }],
+      "react/no-unescaped-entities": "error",
+      "@next/next/no-img-element": "warn", // We should use next/image eventually
+    },
+  },
   globalIgnores([
     // Default ignores of eslint-config-next:
     ".next/**",
