@@ -6,17 +6,24 @@ const eslintConfig = defineConfig([
   {
     rules: {
       "no-unused-vars": "error",
-      "no-console": ["warn", { allow: ["warn", "error"] }],
+      "no-console": "error",
+      "no-debugger": "error",
+      "prefer-const": "error",
+      "eqeqeq": ["error", "always"],
+      "no-var": "error",
       "react/no-unescaped-entities": "error",
-      "@next/next/no-img-element": "warn", // We should use next/image eventually
+      "@next/next/no-img-element": "error",
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
     },
   },
   globalIgnores([
-    // Default ignores of eslint-config-next:
     ".next/**",
     "out/**",
     "build/**",
     "next-env.d.ts",
+    "node_modules/**",
+    "coverage/**",
   ]),
 ]);
 
