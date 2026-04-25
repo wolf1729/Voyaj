@@ -1,0 +1,168 @@
+.features {
+  padding: 8rem 0;
+  background: #050505;
+  position: relative;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.header h2 {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-family: "Playfair Display", Georgia, serif;
+  color: white;
+  margin: 0 0 1rem;
+}
+
+.header p {
+  color: #a1a1aa;
+  font-size: 1.125rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.accordionContainer {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 600px;
+  gap: 1.5rem;
+  padding: 0 2rem;
+}
+
+.panel {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  border-radius: 40px;
+  flex: 0.5;
+  transition: flex 0.7s cubic-bezier(0.25, 1, 0.5, 1), transform 0.4s ease;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  filter: grayscale(40%);
+}
+
+.panel:hover {
+  transform: translateY(-5px);
+  filter: grayscale(10%);
+}
+
+.panelActive {
+  flex: 3;
+  filter: grayscale(0%);
+  cursor: default;
+}
+
+.panelActive:hover {
+  transform: translateY(0);
+}
+
+.panelOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2.5rem;
+  transition: all 0.5s ease;
+}
+
+.panelIcon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(249, 115, 22, 0.2);
+  border: 1px solid rgba(249, 115, 22, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f97316;
+  margin-bottom: 1.5rem;
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1) 0.1s;
+}
+
+.panelActive .panelIcon {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.panelTitle {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 2rem;
+  color: white;
+  margin: 0;
+  white-space: nowrap;
+  transition: all 0.5s ease;
+}
+
+.panelActive .panelTitle {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.panelDesc {
+  color: #d4d4d8;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.panelActive .panelDesc {
+  opacity: 1;
+  max-height: 150px;
+}
+
+/* Vertical text for non-active panels */
+.verticalTitle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-90deg);
+  transform-origin: center center;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.25rem;
+  color: white;
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.panelActive .verticalTitle {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.panelActive .panelTitle {
+  display: block;
+}
+
+.panel:not(.panelActive) .panelTitle {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .accordionContainer {
+    flex-direction: column;
+    height: 800px;
+    padding: 0 1rem;
+  }
+  .verticalTitle {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  .panelTitle {
+    white-space: normal;
+  }
+}
